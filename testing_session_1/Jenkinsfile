@@ -43,7 +43,7 @@ node {
                 sh 'npm run test'
             }            
         }    
-        stage('Docker) {
+        stage('Docker') {
             def customImage = docker.build("planetsugar/bombdisposal:${env.BUILD_ID}")
             customImage.push()
         }   
