@@ -1,4 +1,4 @@
-# Simple deployment used to deploy and manage the app in nigelpoulton/getting-started-k8s:1.0
+# Simple deployment used to deploy and manage the app in nigelpoulton/ps-web:1.0
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -6,19 +6,25 @@ metadata:
   labels:
     app: bombdisposal
 spec:
-  replicas: 3
   selector:
     matchLabels:
       app: bombdisposal
+  replicas: 5
+  minReadySeconds: 5
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
   template:
     metadata:
       labels:
-        app: bombdisposal
+        app: web
     spec: 
       terminationGracePeriodSeconds: 1
       containers:
       - name: bombdisposal-pod
         image: planetsugar/bombdisposal
-        imagePullPolicy: Always
+        imagePullPolicy: Never
         ports:
-        - containerPort: 8080
+        - containerPort: 8081

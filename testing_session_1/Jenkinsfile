@@ -45,8 +45,7 @@ node {
         }    
         stage('Docker') {
              dir(WORKING_FOLDER) {                 
-                def customImage = docker.build("planetsugar/bombdisposal") // :${env.BUILD_ID}")
-                customImage.push()
+                def customImage = docker.build("planetsugar/bombdisposal") // :${env.BUILD_ID}")                
             }  
         }   
     }
