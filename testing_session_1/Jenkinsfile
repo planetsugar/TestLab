@@ -29,18 +29,18 @@ node {
         }        
         stage('Install') {                    
             dir(WORKING_FOLDER) {
-                sh 'yarn install'             
+                sh 'npm install'             
             }        
                 
         }
         stage('Build') {
             dir(WORKING_FOLDER) {
-                sh 'yarn run build'
+                sh 'npm run build'
             }
         }
         stage('Test') {
             dir(WORKING_FOLDER) {
-                sh 'yarn run test'
+                sh 'npm run test'
             }            
         }
     }
