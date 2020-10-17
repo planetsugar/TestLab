@@ -43,5 +43,10 @@ node {
                 sh 'npm run test'
             }            
         }
+        stage('Deploy') {
+            dir(WORKING_FOLDER) {
+                sh 'docker info'
+            }            
+        }
     }
 }
