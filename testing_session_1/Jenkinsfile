@@ -44,8 +44,10 @@ node {
             }            
         }    
         stage('Docker') {
-            def customImage = docker.build("planetsugar/bombdisposal:${env.BUILD_ID}")
-            customImage.push()
+             dir(WORKING_FOLDER) {                 
+                def customImage = docker.build("planetsugar/bombdisposal:${env.BUILD_ID}")
+                customImage.push()
+            }  
         }   
     }
 }
