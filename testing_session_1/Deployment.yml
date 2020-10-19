@@ -24,7 +24,7 @@ spec:
       terminationGracePeriodSeconds: 1
       containers:
       - name: bombdisposal-pod
-        image: 192.168.0.252:5000/planetsugar/bombdisposal:latest
+        image: 192.168.0.252:5000/planetsugar/bombdisposal:28
         imagePullPolicy: Always
         ports:
         - containerPort: 8081
