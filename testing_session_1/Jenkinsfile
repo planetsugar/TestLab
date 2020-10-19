@@ -48,10 +48,12 @@ node {
                 def customImage = docker.build("planetsugar/bombdisposal") // :${env.BUILD_ID}")                
             }  
         }   
-         stage('Deploy to kubernetes') {
-            withKubeConfig([credentialsId: 'kubernetes-config']) {
-                                    sh 'kubectl apply -f Deployment.yml'
+        stage('Deploy to kubernetes') {
+             dir(WORKING_FOLDER) { 
+                withKubeConfig([credentialsId: 'kubernetes-config']) {
+                                        sh 'kubectl apply -f Deployment.yml'
+                }
             }
-  }
+        }
     }
 }
