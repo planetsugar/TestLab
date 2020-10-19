@@ -45,7 +45,7 @@ node {
         }    
         stage('Docker') {
              dir(WORKING_FOLDER) {                 
-                def customImage = docker.build("planetsugar/bombdisposal:${env.BUILD_ID}")                
+                def customImage = docker.build("192.168.0.252:5000/planetsugar/bombdisposal:${env.BUILD_ID}")                
             }  
         }   
         stage('Deploy to kubernetes') {
