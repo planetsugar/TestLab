@@ -19,12 +19,12 @@ spec:
   template:
     metadata:
       labels:
-        app: web
+        app: bombdisposal
     spec: 
       terminationGracePeriodSeconds: 1
       containers:
       - name: bombdisposal-pod
-        image: planetsugar/bombdisposal
-        imagePullPolicy: Never
+        image: planetsugar/bombdisposal:0.1
+        imagePullPolicy: Always
         ports:
         - containerPort: 8081

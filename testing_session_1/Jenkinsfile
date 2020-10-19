@@ -48,5 +48,16 @@ node {
                 def customImage = docker.build("planetsugar/bombdisposal") // :${env.BUILD_ID}")                
             }  
         }   
+         stage('List pods') {
+            withKubeConfig([credentialsId: 'kubernetes',
+                            caCertificate: 'LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUN5RENDQWJDZ0F3SUJBZ0lCQURBTkJna3Foa2lHOXcwQkFRc0ZBREFWTVJNd0VRWURWUVFERXdwcmRXSmwKY201bGRHVnpNQjRYRFRJd01UQXhNekV6TkRrME5Gb1hEVE13TVRBeE1URXpORGswTkZvd0ZURVRNQkVHQTFVRQpBeE1LYTNWaVpYSnVaWFJsY3pDQ0FTSXdEUVlKS29aSWh2Y05BUUVCQlFBRGdnRVBBRENDQVFvQ2dnRUJBTGo1CldkZ0pxK1lBM2Y1djNiMUUzWEhTT3VVVkpnSzBsNGVtWGZiRitWbURLckV0b05LM3ZGMFVNVGlJcWFkVURjY1EKYzB0dGwxa3U4ZGoyWTRLaDNGMDR1dTVYT0x1dHVNRXBEMzErWXd6MElCRS9CTU1ucUp4Wnp5bG1hNnBFTlYzbApSRlJDRE5aTHYzbUU2WFpRT29xaHR5azdTU1JJQnNubVZPV3RpZE9nODY5dExvSWdRWHlORFpQOTRUeGw4c0ltCi9aKzZ4bDNTcFYxTG10MUE0OXRWRUlhd0V1UXRWU0lIU0Z2RVhlajMwSVRVMEZ1QU9BNlIvelR5V21GMFRWcHYKSDhyQWcyVm1VT2dtRnRUSG01QlhBcXNaWVRmbXZ2b3RhV2cyL09mQVQyZFQxRW5HemZiZm43MTh5OVFOQVJzawprV05TeGEvMnQ4c3puL0l5MHo4Q0F3RUFBYU1qTUNFd0RnWURWUjBQQVFIL0JBUURBZ0trTUE4R0ExVWRFd0VCCi93UUZNQU1CQWY4d0RRWUpLb1pJaHZjTkFRRUxCUUFEZ2dFQkFFZzFwc3FNdlNXSlRYYjY2cVJmSWNtMWxZQUMKb1duNVNQeCt1Q3B4aE1KWXdmSGJYQzBFZXJhQXIycE9yMjZpN2RuMTk0blRMOElHaUp0QUxGSjNyeFJvc2JuQQpseDRrbUN4Y3duTjMvT2x3T0p6S2d1OHlWMHI3R013VFgwT2dPQUZUMi9wQ1FpQURsKzN6MnJoZTZHWjJMc0NSClI0QzA1aDcvaDVlRkdsQ04xSHlMazV4cDI3SEM3cnk2QkRJeVg0OG9sLzJNNlpQYjZJUmdZaGpsMkU5RXhIT28Kb0JNdzNOM3NCM2dRdWZiZmtwWEV0bmVXNnh6bklvTjBENlpFSXpCUWQ5cWhYbndwaW5RMnRHcFNERGtITDlBaApRMEdyWUJVNittM0RDM0F3NUFpYU5iTGRlakxJQksvS3BkeC9BeWtCT3BMdDRlN0Z6aVpMVGcvdkUwaz0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=',
+                            serverUrl: 'https://192.168.0.59:6443',
+                            contextName: 'kubernetes-admin@kubernetes',
+                            clusterName: 'kubernetes',
+                            namespace: 'default'
+                            ]) {
+                                    sh 'kubectl get pods'
+            }
+  }
     }
 }
