@@ -8,7 +8,7 @@ spec:
   selector:
     matchLabels:
       app: bombdisposal
-  replicas: 5
+  replicas: 10
   minReadySeconds: 5
   strategy:
     type: RollingUpdate
