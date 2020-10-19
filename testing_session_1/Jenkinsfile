@@ -51,8 +51,7 @@ node {
         }   
         stage('Deploy to kubernetes') {
              dir(WORKING_FOLDER) { 
-                sh "sed -i \'s/{BUILD_ID}/${env.BUILD_ID}/g\' Deployment.yml"
-                sh "cat Deployment.yml"
+                sh "sed -i \'s/{BUILD_ID}/${env.BUILD_ID}/g\' Deployment.yml"                
                 withKubeConfig([credentialsId: 'kubernetes-config']) {                    
                     sh 'kubectl apply -f Deployment.yml'                                    
                 }
