@@ -214,6 +214,21 @@ describe('When the user correctly defuses the bomb', () => {
     expect(redButton.props().disabled).toBe(true);
     expect(greenButton.props().disabled).toBe(true);
   });
+
+  // **********
+  it('will allow the user to try again', async () => {        
+
+    // We want to fetch again
+    jest.spyOn(global, 'fetch').mockImplementation(() => new Promise<any>((resolve, reject) => {}));
+
+    // Find the button and press it
+    const tryAgain = appWrapper.find('button[data-testid="try-again-button"]');  
+    await act(async () => await tryAgain.simulate('click'));    
+    appWrapper.update();
+
+    // Check that it is in a fetching state
+    expect(appWrapper.find('p[data-testid="fetching-randoms"]').text()).toBe(text.default.FETCHING_RANDOMS);
+  });
 });
 
 describe('When the user picks the wrong wire', () => {

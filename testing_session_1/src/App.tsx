@@ -83,8 +83,12 @@ function App() {
                   </p>
                   <p data-testid="disclaimer-section">
                     {text.default.DISCLAIMER} 
-                  </p>
-                  <button data-testid="try-again-button" name='Again' onClick={ 
+                  </p>                 
+              </div> 
+            }
+            { (hasExploded || bombDisarmed) && 
+              <div>
+                 <button data-testid="try-again-button" name='Again' onClick={ 
                     () => { 
                       setBombDisarm(false);
                       setExplosionStatus(false);
@@ -94,7 +98,7 @@ function App() {
                   }>
                       { text.default.AGAIN }
                   </button>
-              </div> 
+              </div>
             }
           </React.Fragment>
         }
