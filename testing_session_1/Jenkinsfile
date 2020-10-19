@@ -50,12 +50,14 @@ node {
         }   
         stage('Deploy to kubernetes') {
              dir(WORKING_FOLDER) { 
-                sedCommand = "s/{{BUILD_ID}}/${env.BUILD_ID}/g"
+                
                 withKubeConfig([credentialsId: 'kubernetes-config']) {
-                    sh 'cat Deployment.yml | sed "' + sedCommand +'" | kubectl apply -f -'
-                    // sh 'kubectl apply -f Deployment.yml'
+                    sh 'kubectl apply -f Deployment.yml --force'                                    
                 }
             }
         }
     }
 }
+
+//sedCommand = "s/{{BUILD_ID}}/${env.BUILD_ID}/g"
+//sedCommand = "s/{{BUILD_ID}}/${env.BUILD_ID}/g"
